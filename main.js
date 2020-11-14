@@ -77,8 +77,9 @@ function xmlHandler(reader) {
     return elem.value
   })
   keys.forEach((key, index) => {
-    M.toast({ html: `Handling ${key}`, classes: 'rounded' });
-    evaluateXPath(dom, `//es:${key}`).forEach(elem => {
+    const elements = evaluateXPath(dom, `//es:${key}`)
+    M.toast({ html: `${key}: ${elements.length}`, classes: 'rounded' })
+    elements.forEach(elem => {
       if (values[index] != "") {
         elem.textContent = values[index]
       }
@@ -97,15 +98,16 @@ function fileHandling() {
   reader.onload = () => {
     const xmlString = xmlHandler(reader)
     downloadFile(xmlString)
+    M.toast({ html: 'Success!', classes: 'rounded green' })
   }
   reader.onloadstart = () => {
-    M.toast({ html: 'Load starting!', classes: 'rounded' });
+    M.toast({ html: 'Load starting!', classes: 'rounded' })
   }
   reader.onloadend = () => {
-    M.toast({ html: 'Load ended!', classes: 'rounded' });
+    M.toast({ html: 'Load ended!', classes: 'rounded' })
   }
   reader.onerror = () => {
-    M.toast({ html: 'Error!', classes: 'rounded red' });
+    M.toast({ html: 'Error!', classes: 'rounded red' })
     console.log(reader.error)
   }
 }
