@@ -1,3 +1,9 @@
+//   const param = {
+//      "qRxLevMin": "-69",
+//      "a2CriticalThresholdRsrp": "-70"
+//   }
+
+
 function insertAfter(newNode, referenceNode) {
   referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling)
 }
@@ -22,51 +28,6 @@ function uploadFile() {
 }
 
 
-function fileHandling() {
-  reader = uploadFile()
-
-  reader.onload = () => {
-    const xmlString = xmlHandler(reader)
-    downloadFile(xmlString)
-  }
-  reader.onerror = function() {
-    console.log(reader.error)
-  }
-  return {}
-}
-
-
-function xmlHandler(reader) {
-  const xmlStr = reader.result
-  const parser = new DOMParser()
-  const dom = parser.parseFromString(xmlStr, "application/xml")
-    //   const param = {
-    //     "qRxLevMin": null,
-    //     "a2CriticalThresholdRsrp": null,
-    //     // "qRxLevMin": "-69",
-    //     // "a2CriticalThresholdRsrp": "-70"
-    //   }
-    //   console.log(document.getElementsByClassName("pKey").values)
-  const keys = Array.from(document.getElementsByClassName("pKey")).map(elem => {
-    return elem.value
-  })
-  const values = Array.from(document.getElementsByClassName("pValue")).map(elem => {
-    return elem.value
-  })
-  keys.forEach((key, index) => {
-    evaluateXPath(dom, `//es:${key}`).forEach(elem => {
-      if (values[index] != "") {
-        elem.textContent = values[index]
-      }
-      const lastAncestor = evaluateXPath(elem, "ancestor::xn:VsDataContainer")[0]
-      lastAncestor.setAttribute("modifier", "update")
-    })
-  })
-
-  return domToString(dom)
-}
-
-
 function domToString(dom) {
   if (typeof window.XMLSerializer == "undefined") {
     throw new Error("No modern XML serializer found.")
@@ -77,7 +38,8 @@ function domToString(dom) {
 
 
 function downloadFile(xmlContent) {
-  filename = `modified_${document.getElementById('filename').files[0].name}`
+  const input = document.getElementById('filename')
+  filename = `modified_${input.files[0].name}`
   const file = new File([xmlContent], filename, {
     type: "text/xml",
   })
@@ -101,4 +63,49 @@ function evaluateXPath(aNode, aExpr) {
   while (res = result.iterateNext())
     found.push(res)
   return found
+}
+
+
+function xmlHandler(reader) {
+  const xmlStr = reader.result
+  const parser = new DOMParser()
+  const dom = parser.parseFromString(xmlStr, "application/xml")
+  const keys = Array.from(document.getElementsByClassName("pKey")).map(elem => {
+    return elem.value
+  })
+  const values = Array.from(document.getElementsByClassName("pValue")).map(elem => {
+    return elem.value
+  })
+  keys.forEach((key, index) => {
+    M.toast({ html: `Handling ${key}`, classes: 'rounded' });
+    evaluateXPath(dom, `//es:${key}`).forEach(elem => {
+      if (values[index] != "") {
+        elem.textContent = values[index]
+      }
+      const lastAncestor = evaluateXPath(elem, "ancestor::xn:VsDataContainer")[0]
+      lastAncestor.setAttribute("modifier", "update")
+    })
+  })
+
+  return domToString(dom)
+}
+
+
+function fileHandling() {
+  reader = uploadFile()
+
+  reader.onload = () => {
+    const xmlString = xmlHandler(reader)
+    downloadFile(xmlString)
+  }
+  reader.onloadstart = () => {
+    M.toast({ html: 'Load starting!', classes: 'rounded' });
+  }
+  reader.onloadend = () => {
+    M.toast({ html: 'Load ended!', classes: 'rounded' });
+  }
+  reader.onerror = () => {
+    M.toast({ html: 'Error!', classes: 'rounded red' });
+    console.log(reader.error)
+  }
 }
