@@ -1,0 +1,33 @@
+a.btn {
+  margin: 2vh;
+}
+
+.row {
+  max-width: 800px;
+}
+
+@keyframes slideInFromLeft {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInFromRight {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.key-field {
+  animation: slideInFromLeft .5s ease-in;
+}
+
+.value-field {
+  animation: slideInFromRight .5s ease-in;
+}

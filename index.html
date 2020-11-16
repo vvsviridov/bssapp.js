@@ -4,6 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
   <!--Import Google Icon Font-->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
   <!--Import materialize.css-->
@@ -12,22 +13,22 @@
 </head>
 
 <body>
-  <div class="row" style="max-width: 800px;">
+  <div class="row">
     <form class="col s12">
       <div class="row param-row">
-        <div class="input-field col s6">
+        <div class="input-field col s6 key-field">
           <i class="material-icons prefix">filter_list</i>
           <input id="pKey" type="text" class="validate pKey" />
           <label for="pKey">Parameter Name</label>
         </div>
-        <div class="input-field col s6">
+        <div class="input-field col s6 value-field">
           <i class="material-icons prefix">edit</i>
           <input id="pValue" type="text" class="validate pValue" />
           <label for="pValue">Parameter Value</label>
         </div>
       </div>
       <div class="row">
-        <a class="btn-floating btn-large waves-effect waves-light right" onclick="plusClicked()" style="margin: 2vh;">
+        <a class="btn-floating btn-large waves-effect waves-light right" onclick="plusClicked()">
           <i class="material-icons">add</i>
         </a>
       </div>
@@ -41,7 +42,7 @@
         </div>
       </div>
       <div class="row">
-        <a class="btn waves-effect waves-light right" onclick="fileHandling();" style="margin: 2vh;">Submit
+        <a class="btn waves-effect waves-light right" onclick="fileHandling();">Submit
           <i class="material-icons right">send</i>
         </a>
       </div>

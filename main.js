@@ -77,15 +77,17 @@ function xmlHandler(reader) {
     return elem.value
   })
   keys.forEach((key, index) => {
-    const elements = evaluateXPath(dom, `//es:${key}`)
-    M.toast({ html: `${key}: ${elements.length}`, classes: 'rounded' })
-    elements.forEach(elem => {
-      if (values[index] != "") {
-        elem.textContent = values[index]
-      }
-      const lastAncestor = evaluateXPath(elem, "ancestor::xn:VsDataContainer")[0]
-      lastAncestor.setAttribute("modifier", "update")
-    })
+    if (key !== "") {
+      const elements = evaluateXPath(dom, `//es:${key}`)
+      M.toast({ html: `${key}: ${elements.length}`, classes: 'rounded' })
+      elements.forEach(elem => {
+        if (values[index] !== "") {
+          elem.textContent = values[index]
+        }
+        const lastAncestor = evaluateXPath(elem, "ancestor::xn:VsDataContainer")[0]
+        lastAncestor.setAttribute("modifier", "update")
+      })
+    }
   })
 
   return domToString(dom)
