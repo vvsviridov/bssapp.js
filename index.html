@@ -9,47 +9,78 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
   <!--Import materialize.css-->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
-  <title>Document</title>
+  <title>BSS Helper</title>
 </head>
 
 <body>
-  <div class="row">
-    <form class="col s12">
-      <div class="row param-row">
-        <div class="input-field col s6 key-field">
-          <i class="material-icons prefix">filter_list</i>
-          <input id="pKey" type="text" class="validate pKey" />
-          <label for="pKey">Parameter Name</label>
-        </div>
-        <div class="input-field col s6 value-field">
-          <i class="material-icons prefix">edit</i>
-          <input id="pValue" type="text" class="validate pValue" />
-          <label for="pValue">Parameter Value</label>
-        </div>
+  <!-- xml editor form -->
+  <div class="row col s12">
+    <h5>3GPP XML editor</h5>
+    <div class="row param-row">
+      <div class="input-field col s6 key-field">
+        <i class="material-icons prefix">filter_list</i>
+        <input id="pKey" type="text" class="validate pKey" />
+        <label for="pKey">Parameter Name</label>
       </div>
-      <div class="row">
-        <a class="btn-floating btn-large waves-effect waves-light right" onclick="plusClicked()">
-          <i class="material-icons">add</i>
-        </a>
+      <div class="input-field col s6 value-field">
+        <i class="material-icons prefix">edit</i>
+        <input id="pValue" type="text" class="validate pValue" />
+        <label for="pValue">Parameter Value</label>
       </div>
-      <div class="file-field input-field">
-        <div class="btn">
-          <span>File</span>
-          <input type="file" id="filename">
-        </div>
-        <div class="file-path-wrapper">
-          <input class="file-path validate" type="text">
-        </div>
+    </div>
+    <div class="row">
+      <a class="btn-floating btn-large waves-effect waves-light right" onclick="plusClicked()">
+        <i class="material-icons">add</i>
+      </a>
+    </div>
+    <div class="file-field input-field">
+      <div class="btn">
+        <span>File</span>
+        <input type="file" id="filename">
       </div>
-      <div class="row">
-        <a class="btn waves-effect waves-light right" onclick="fileHandling();">Submit
+      <div class="file-path-wrapper">
+        <input class="file-path validate" type="text">
+      </div>
+    </div>
+    <div class="row">
+      <a class="btn waves-effect waves-light right" onclick="fileHandling()">Submit
           <i class="material-icons right">send</i>
         </a>
-      </div>
-    </form>
+    </div>
   </div>
+  <!-- cmedit form -->
+  <div class="row">
+    <h5>ENM cmedit commands</h5>
+    <div class="input-field value-field">
+      <input id="node_name" type="text" class="validate" oninput="nodeNameChange()">
+      <label for="node_name">Type Node Name</label>
+    </div>
+    <ul class="collapsible">
+      <li>
+        <div class="collapsible-header"><i class="material-icons">network_check</i>Check cell status for all cells on a node</div>
+        <div class="collapsible-body">
+          <!-- <span> -->
+          <p>cmedit get <span class="nodename">RBS01</span> EUtranCellFDD.(operationalState,administrativeState,availabilityStatus,cellBarred) –t</p>
+          <p>cmedit get <span class="nodename">RBS01</span> ENodeBFunction.* -t</p>
+          <!-- </span> -->
+        </div>
+      </li>
+      <li>
+        <div class="collapsible-header"><i class="material-icons">network_locked</i>Lock all cells on a single node</div>
+        <div class="collapsible-body">
+          <p>cmedit set <span class="nodename">RBS01</span> EUtranCellFDD administrativeState=LOCKED</p>
+          <p>cmedit set <span class="nodename">RBS01</span> EUtranCellFDD administrativeState=LOCKED --force</p>
+          <p>cmedit set <span class="nodename">RBS01</span> EUtranCellFDD administrativeState=UNLOCKED --force</p>
+        </div>
+      </li>
+      <li>
+        <div class="collapsible-header"><i class="material-icons">find_in_page</i>Find all nodes</div>
+        <div class="collapsible-body">
+          <p>cmedit get <span class="nodename">RBS01</span> EUtranCellFDD.(operationalState==DISABLED,administrativeState==UNLOCKED) –t</p>
+        </div>
+      </li>
+    </ul>
   </div>
-
   <!--JavaScript at end of body for optimized loading-->
   <script src="main.js"></script>
   <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>

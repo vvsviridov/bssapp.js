@@ -4,6 +4,43 @@
 //   }
 
 
+document.addEventListener('DOMContentLoaded', () => {
+  var elems = document.querySelectorAll('.collapsible')
+  var instances = M.Collapsible.init(elems, {})
+})
+
+
+Array.from(document.getElementsByTagName("p")).forEach((elem) => {
+  elem.addEventListener('click', (e) => {
+    copyToClipboard(e.target.textContent)
+    M.toast({ html: 'Copied to clipboard!', classes: 'rounded' })
+  })
+})
+
+
+Array.from(document.getElementsByClassName("nodename")).forEach((elem) => {
+  elem.addEventListener('click', (e) => {
+    e.stopPropagation()
+    copyToClipboard(e.target.parentNode.textContent)
+    M.toast({ html: 'Copied to clipboard!', classes: 'rounded' })
+  })
+})
+
+
+function copyToClipboard(text) {
+  const dummy = document.createElement("textarea");
+  // to avoid breaking orgain page when copying more words
+  // cant copy when adding below this code
+  // dummy.style.display = 'none'
+  document.body.appendChild(dummy);
+  //Be careful if you use texarea. setAttribute('value', value), which works with "input" does not work with "textarea". – Eduard
+  dummy.value = text;
+  dummy.select();
+  document.execCommand("copy");
+  document.body.removeChild(dummy);
+}
+
+
 function insertAfter(newNode, referenceNode) {
   referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling)
 }
@@ -112,4 +149,13 @@ function fileHandling() {
     M.toast({ html: 'Error!', classes: 'rounded red' })
     console.log(reader.error)
   }
+}
+
+
+function nodeNameChange() {
+  const nodenames = document.getElementsByClassName("nodename")
+  const nodename = document.getElementById('node_name').value
+  Array.from(nodenames).forEach((elem) => {
+    elem.textContent = nodename
+  })
 }
