@@ -1,5 +1,21 @@
-a.right {
-  margin: 2vh;
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap');
+body {
+  font-family: 'Lato', sans-serif;
+  color: #333;
+  line-height: 1.6;
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+main {
+  flex: 1 0 auto;
+}
+
+p {
+  color: #333;
+  padding: 1%;
+  margin: 1%;
 }
 
 .row {
@@ -30,4 +46,119 @@ a.right {
 
 .value-field {
   animation: slideInFromRight .5s ease-in;
+}
+
+
+/* Navbar */
+
+nav {
+  /* background-color: var(--primary-color); */
+  color: #fff;
+  height: 70px;
+}
+
+nav ul {
+  display: flex;
+}
+
+nav a {
+  color: #fff;
+  padding: 10px;
+  margin: 0 5px;
+}
+
+nav a:hover {
+  border-bottom: 2px rgb(0, 224, 224) solid;
+}
+
+.flex {
+  justify-content: space-between;
+}
+
+
+/* showcase */
+
+.showcase {
+  height: 85vh;
+  position: relative;
+}
+
+.showcase::before,
+.showcase::after {
+  content: '';
+  position: absolute;
+  height: 100px;
+  bottom: -40px;
+  right: 0;
+  left: 0;
+  background: #fff;
+  transform: skewY(-3deg);
+  -webkit-transform: skewY(-3deg);
+  -moz-transform: skewY(-3deg);
+  -ms-transform: skewY(-3deg);
+}
+
+
+/* xmleditor */
+
+.xmleditor {
+  color: #fff;
+  padding-top: 10vh;
+}
+
+
+/* label color */
+
+.xmleditor .input-field label {
+  color: #fff;
+}
+
+
+/* label focus color */
+
+.xmleditor .input-field input[type=text]:focus+label {
+  color: #fff;
+}
+
+
+/* label underline focus color */
+
+.xmleditor .input-field input[type=text]:focus {
+  border-bottom: 1px solid #00695c;
+  box-shadow: 0 1px 0 0 #00695c;
+}
+
+
+/* valid color */
+
+.xmleditor .input-field input[type=text].valid {
+  border-bottom: 1px solid #00695c;
+  box-shadow: 0 1px 0 0 #00695c;
+}
+
+
+/* invalid color */
+
+.xmleditor .input-field input[type=text].invalid {
+  border-bottom: 1px solid #d32f2f;
+  box-shadow: 0 1px 0 0 #d32f2f;
+}
+
+
+/* icon prefix focus color */
+
+.xmleditor .input-field .prefix.active {
+  color: #00695c;
+}
+
+.card {
+  border-radius: 5px;
+}
+
+.container.center {
+  height: 100%;
+}
+
+footer .row .col {
+  height: 55px;
 }

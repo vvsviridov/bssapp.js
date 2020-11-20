@@ -4,87 +4,206 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
   <!--Import Google Icon Font-->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
   <!--Import materialize.css-->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
-  <title>BSS Helper</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
+  <link rel="stylesheet" href="style.css">
+  <title>.cmd</title>
 </head>
 
 <body>
+  <!-- Navbar -->
+  <nav class="teal">
+    <div class="nav-wrapper container">
+      <a href="#" class="brand-logo">.cmd</a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="docs.html">Docs</a></li>
+      </ul>
+    </div>
+  </nav>
+  <!-- Showcase -->
+  <section class="showcase">
+    <div class="container center valign-wrapper">
+      <div class="col s6 hide-on-med-and-down">
+        <img class="responsive-img" src="img/laptop.png">
+      </div>
+      <div class="showcase-text col l6 s12">
+        <h1>Easier Commands Manage</h1>
+        <p>Get all your commands in one place, modify, copy and command file handling</p>
+        <a href="docs.html" class="btn btn-outline">Read More</a>
+      </div>
+    </div>
+  </section>
   <!-- xml editor form -->
-  <div class="row col s12">
-    <h5>3GPP XML editor</h5>
-    <div class="row param-row">
-      <div class="input-field col s6 key-field">
-        <i class="material-icons prefix">filter_list</i>
-        <input id="pKey" type="text" class="validate pKey" />
-        <label for="pKey">Parameter Name</label>
-      </div>
-      <div class="input-field col s6 value-field">
-        <i class="material-icons prefix">edit</i>
-        <input id="pValue" type="text" class="validate pValue" />
-        <label for="pValue">Parameter Value</label>
+  <!-- <section class="stats"> -->
+  <section class="xmleditor teal lighten-2">
+    <div class="container">
+      <div class="row col s12">
+        <div class="card teal darken-2 hoverable z-depth-2">
+          <div class="card-content white-text">
+            <span class="card-title">3GPP XML editor</span>
+            <div class="row param-row">
+              <div class="input-field col s6 key-field">
+                <i class="material-icons prefix">filter_list</i>
+                <input id="pKey" type="text" class="validate pKey" />
+                <label for="pKey">Parameter Name</label>
+              </div>
+              <div class="input-field col s6 value-field">
+                <i class="material-icons prefix">edit</i>
+                <input id="pValue" type="text" class="validate pValue" />
+                <label for="pValue">Parameter Value</label>
+              </div>
+            </div>
+            <div class="row">
+              <a class="btn-floating btn-large waves-effect waves-light right" onclick="plusClicked()">
+                <i class="material-icons">add</i>
+              </a>
+            </div>
+            <div class="file-field input-field row">
+              <div class="btn">
+                <span>File</span>
+                <input type="file" id="filename">
+              </div>
+              <div class="file-path-wrapper">
+                <input class="file-path validate" type="text">
+              </div>
+            </div>
+            <div class="row">
+              <a class="btn waves-effect waves-light right" onclick="fileHandling()">Submit
+                <i class="material-icons right">send</i>
+              </a>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="row">
-      <a class="btn-floating btn-large waves-effect waves-light right" onclick="plusClicked()">
-        <i class="material-icons">add</i>
-      </a>
-    </div>
-    <div class="file-field input-field">
-      <div class="btn">
-        <span>File</span>
-        <input type="file" id="filename">
-      </div>
-      <div class="file-path-wrapper">
-        <input class="file-path validate" type="text">
-      </div>
-    </div>
-    <div class="row">
-      <a class="btn waves-effect waves-light right" onclick="fileHandling()">Submit
-          <i class="material-icons right">send</i>
-        </a>
-    </div>
-  </div>
+  </section>
   <!-- cmedit form -->
-  <div class="row">
-    <h5>ENM cmedit commands</h5>
-    <div class="input-field value-field">
-      <input id="node_name" type="text" class="validate" oninput="nodeNameChange()">
-      <label for="node_name">Type Node Name</label>
+  <section class="cmedit">
+    <div class="container">
+      <div class="row">
+        <h5>ENM cmedit commands</h5>
+        <div class="input-field value-field">
+          <input id="node_name" type="text" class="validate" oninput="nodeNameChange()">
+          <label for="node_name">Type Node Name</label>
+        </div>
+        <ul class="collapsible">
+          <!-- CELL STATUS -->
+          <li>
+            <div class="collapsible-header">
+              <i class="material-icons">network_check</i> Check statuses on a node
+            </div>
+            <div class="collapsible-body">
+
+              <p class="tooltipped hoverable" data-position="left" data-tooltip="Click to copy">
+                cmedit get <span class="nodename">RBS01</span> EUtranCellFDD.(operationalState,administrativeState,availabilityStatus,cellBarred) –t
+              </p>
+              <p class="tooltipped hoverable" data-position="left" data-tooltip="Click to copy">
+                cmedit get <span class="nodename">RBS01</span> ENodeBFunction.* -t
+              </p>
+              <p class="tooltipped hoverable" data-position="left" data-tooltip="Click to copy">
+                cmedit get <span class="nodename">RBS01</span> ENodeBFunction.(EUtranCellFDDId==<span class="nodename">RBS01</span>_1,operationalState,administrativeState,availabilityStatus,cellBarred) -t
+              </p>
+              <p class="tooltipped hoverable" data-position="left" data-tooltip="Click to copy">
+                cmedit get
+                <span class="nodename">RBS01</span> TermPointToENB.(operationalState,administrativeState,availabilityStatus) -t
+              </p>
+              <p class="tooltipped hoverable" data-position="left" data-tooltip="Click to copy">
+                cmedit get
+                <span class="nodename">RBS01</span> AuxPlugInUnit.(unitType,operationalState,administrativeState,availabilityStatus) -t
+              </p>
+            </div>
+          </li>
+          <!-- LOCK/UNLOCK -->
+          <li>
+            <div class="collapsible-header">
+              <i class="material-icons">network_locked</i> Lock/unlock and restart a single node
+            </div>
+            <div class="collapsible-body">
+              <p class="tooltipped hoverable" data-position="left" data-tooltip="Click to copy">
+                cmedit set <span class="nodename">RBS01</span> EUtranCellFDD administrativeState=LOCKED
+              </p>
+              <p class="tooltipped hoverable" data-position="left" data-tooltip="Click to copy">
+                cmedit set <span class="nodename">RBS01</span> EUtranCellFDD administrativeState=LOCKED --force
+              </p>
+              <p class="tooltipped hoverable" data-position="left" data-tooltip="Click to copy">
+                cmedit set <span class="nodename">RBS01</span> EUtranCellFDD administrativeState=UNLOCKED --force
+              </p>
+              <p class="tooltipped hoverable" data-position="left" data-tooltip="Click to copy">
+                cmedit set <span class="nodename">RBS01</span> AuxPlugInUnit.(AuxPlugInUnitId==RUS) --force
+              </p>
+              <p class="tooltipped hoverable" data-position="left" data-tooltip="Click to copy">
+                cmedit action <span class="nodename">RBS01</span> ManagedElement manualRestart.(restartRank=RESTART_WARM;restartReason=PLANNED_RECONFIGURATION;restartInfo=someInfo)
+              </p>
+            </div>
+          </li>
+          <!-- FIND -->
+          <li>
+            <div class="collapsible-header"><i class="material-icons">find_in_page</i>Find all nodes</div>
+            <div class="collapsible-body">
+              <p class="tooltipped hoverable" data-position="left" data-tooltip="Click to copy">
+                cmedit get <span class="nodename">RBS01</span> EUtranCellFDD.(operationalState==DISABLED,administrativeState==UNLOCKED) –t
+              </p>
+            </div>
+          </li>
+          <!-- EXPORT/IMPORT -->
+          <li>
+            <div class="collapsible-header"><i class="material-icons">find_in_page</i>Export/Import nodes</div>
+            <div class="collapsible-body">
+              <p class="tooltipped hoverable" data-position="left" data-tooltip="Click to copy">
+                cmedit export --ne <span class="nodename">RBS</span> --filetype 3GPP --filecompression none --jobname myExportJob
+              </p>
+              <p class="tooltipped hoverable" data-position="left" data-tooltip="Click to copy">
+                cmedit export --ne SubNetwork=ONRM_ROOT_MO,SubNetwork=<span class="nodename">RBS</span> --filetype 3GPP --filecompression none --jobname myExportJob
+              </p>
+              <p class="tooltipped hoverable" data-position="left" data-tooltip="Click to copy">
+                cmedit export --status --jobname myExportJob
+              </p>
+              <p class="tooltipped hoverable" data-position="left" data-tooltip="Click to copy">
+                cmedit export --download --jobname myExportJob
+              </p>
+            </div>
+          </li>
+        </ul>
+      </div>
     </div>
-    <ul class="collapsible">
-      <li>
-        <div class="collapsible-header"><i class="material-icons">network_check</i>Check cell status for all cells on a node</div>
-        <div class="collapsible-body">
-          <!-- <span> -->
-          <p>cmedit get <span class="nodename">RBS01</span> EUtranCellFDD.(operationalState,administrativeState,availabilityStatus,cellBarred) –t</p>
-          <p>cmedit get <span class="nodename">RBS01</span> ENodeBFunction.* -t</p>
-          <!-- </span> -->
+  </section>
+  <footer class="page-footer blue-grey darken-4">
+    <div class="container">
+      <div class="row">
+        <div class="col s8 center valign-wrapper">
+          <h5 class="white-text">Follow Us</h5>
         </div>
-      </li>
-      <li>
-        <div class="collapsible-header"><i class="material-icons">network_locked</i>Lock all cells on a single node</div>
-        <div class="collapsible-body">
-          <p>cmedit set <span class="nodename">RBS01</span> EUtranCellFDD administrativeState=LOCKED</p>
-          <p>cmedit set <span class="nodename">RBS01</span> EUtranCellFDD administrativeState=LOCKED --force</p>
-          <p>cmedit set <span class="nodename">RBS01</span> EUtranCellFDD administrativeState=UNLOCKED --force</p>
+        <div class="col s1 center valign-wrapper">
+          <a href="#"><i class="fab fa-github fa-2x teal-text"></i></a>
         </div>
-      </li>
-      <li>
-        <div class="collapsible-header"><i class="material-icons">find_in_page</i>Find all nodes</div>
-        <div class="collapsible-body">
-          <p>cmedit get <span class="nodename">RBS01</span> EUtranCellFDD.(operationalState==DISABLED,administrativeState==UNLOCKED) –t</p>
+        <div class="col s1 center valign-wrapper">
+          <a href="#"><i class="fab fa-facebook fa-2x teal-text"></i></a>
         </div>
-      </li>
-    </ul>
-  </div>
+        <div class="col s1 center valign-wrapper">
+          <a href="#"><i class="fab fa-instagram fa-2x teal-text"></i></a>
+        </div>
+        <div class="col s1 center valign-wrapper">
+          <a href="#"><i class="fab fa-twitter fa-2x teal-text"></i></a>
+        </div>
+      </div>
+    </div>
+    </div>
+    <div class="footer-copyright">
+      <div class="container">
+        © 2021 Copyright Text
+        <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+      </div>
+    </div>
+  </footer>
   <!--JavaScript at end of body for optimized loading-->
   <script src="main.js"></script>
-  <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
 </body>
 
 </html>
